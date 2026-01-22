@@ -15,18 +15,19 @@
 <input type="submit" value="Calculate">
 </form>
 </div>
-    </body>
-<?php 
-    if($_SERVER ['REQUEST_METHOD'] == "POST"){
+
+</body>
+<?php
+$bmi='';
+    if($_SERVER ['REQUEST_METHOD'] === "POST"){
 $height = $_POST['heightVal'];
 $weight = $_POST['weightVal'];
-
 $bmi = $weight/(($height/100)*($height/100));
     }
 ?>
 
 <?php
- echo $bmi;
+ echo "Your bmi is " .$bmi;
 ?>
 </html>
 

@@ -11,7 +11,8 @@
     <input type="submit" value="Convert">
     </div>
 <body>
-<?php 
+<?php
+$celcius='';
 if($_SERVER ['REQUEST_METHOD'] == "POST"){
     $kelvin= $_POST['kelvinVal'];
     $celcius = $kelvin-273.15;
