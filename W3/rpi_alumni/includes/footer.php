@@ -1,8 +1,8 @@
 <hr>
- <footer style="text-align: center;">
- <p>RMI Alumini Official Site</p>
- <p>Rensselaer Polytechnic Institute</p>
- <p>Office of Alumni Engagement</p>
+<footer style="text-align: center;">
+<p>RMI Alumini Official Site</p>
+<p>Rensselaer Polytechnic Institute</p>
+<p>Office of Alumni Engagement</p>
 <p>Heffner Alumni House</p>
 <p>1301 Peoples Avenue</p>
 <p>Troy, NY 12180 USA</p>
