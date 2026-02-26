@@ -33,10 +33,10 @@ require_once 'includes/header.php';
 <form action="login.php" method= "POST" >
     <h1>PHP Knowledge Questions</h1>
     <p>Answer all question</p>
-    <p>Enter Name:
-    <input type="text" name="username" id="username">
-    <input type="password" name="password" id="password">
+    <p>Enter Name:</p>
+    <input type="text" name="username" id="username"> <br><br>
+    <input type="password" name="password" id="password"> <br><br>
     <input type="submit" value="Start Quiz">
-</p>
+
 </form>
 <?php require_once 'includes/footer.php'; ?>
