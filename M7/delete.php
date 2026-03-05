@@ -37,10 +37,9 @@ require_once("config/app_config.php");
                 <td><?php echo $pengguna['id']; ?></td>
                 <td><?php echo $pengguna['pengguna']; ?></td>
                 <td><?php echo $pengguna['peranan']; ?></td>
-                <td><input type="submit" value="Padam" class="btn btn-danger"></td>
                 <td>
                     <form action="" method = "POST">
-                        <input type="hidden" name="user_id" value="<?php echo $pengguna['id']; ?>">
+                        <input type="hidden" class="btn btn-danger" name="user_id" value="<?php echo $pengguna['id']; ?>">
                         <input type="submit" value="Delete">
                     </form>
                 </td>
