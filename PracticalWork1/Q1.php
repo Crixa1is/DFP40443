@@ -1,54 +1,57 @@
-<?php 
+<div class="container">
+<div class="col-sm-3">
+<?php
 require_once 'config/app_config.php';
-require_once 'includes/header.php';
+require_once 'includes/heading.php';
 
 $questions=[
-    ['questions' => 'What does PHP stands for?', 'answer' => 'Hypertext Processor'],
-    ['questions' => '', 'answer' => 'Hypertext Processor'],
-    ['questions' => 'What does PHP stands for?', 'answer' => 'Hypertext Processor']
+    ['question' => 'What does PHP stands for', 'answer'=> 'Hypertext Preprocessor'],
+    ['question' => 'What does HTML stands for', 'answer'=> 'Hypertext Markup Language'],
+    ['question' => 'What does CSS stands for', 'answer'=> 'Cascading Style Sheets']
 ];
 
-if(!isset ($_SESSION['soalanSemanasa'])){
+
+if(!isset($_SESSION['soalanSemasa'])){
     $_SESSION['soalanSemasa'] = 0;
     $_SESSION['score'] = 0;
-
 }
+
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
     $userAnswer = $_POST['answer'];
-    $currentQ = $_SESSION['soalansemasa'];
+    $currentQ = $_SESSION['soalanSemasa'];
 
-    $correctAnswer = $questions[$currentQuestion['answer']];
+    $correctAnswer = $questions[$currentQ]['answer'];
 
     if(strcasecmp($userAnswer,$correctAnswer) === 0){
-    $_SESSION['score']++;
-}
+          $_SESSION['score']++;
+    }
+
     $_SESSION['soalanSemasa']++;
 
-    if($_SESSION['soalanSemasa']>= count($questions)){
+    if( $_SESSION['soalanSemasa'] >= count($questions)){
         header('Location: finish.php');
         exit;
     }
-header('Location: Q1.php');
-exit;
+
+ header('Location: Q1.php');
+ exit;
 }
 
 $currentIndex = $_SESSION['soalanSemasa'];
 
 $currentQuestion = $questions[$currentIndex];
+
 ?>
-User:<?php echo htmlspecialchars($_SESSION['username']);?><br>
-Score: <?php echo $_SESSION['score'] ?>
+User:<?php echo htmlspecialchars($_SESSION['username']); ?><br>
+Score:<?php echo $_SESSION['score'];?>
+<br><br>
+<?php echo $currentQuestion['question'] ?>
+<form action="Q1.php" method="POST">
+Your answer
+<input type="text" name="answer">
+<input type="submit" value="Submit" class="btn btn-primary">
+</form>
 
-<h1>Question 1: </h1>
-<p>What does PHP stand for? </p>
-<form action="finish.php" method="POST">
-    <p></p>
-    <input type="text" name="" id=""> <br><br>
-    <input type="text" name="" id=""> <br><br>
-    <input type="text" name="" id=""> <br><br>
-
-    <input type="submit" value="Finish Attempt">
-
-<?php 
-require_once 'includes/footer.php'
+<?php
+require_once 'includes/footer.php';
 ?>

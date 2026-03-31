@@ -1,5 +1,4 @@
 <?php
-
 require_once 'config/app_config.php';
 $error='';
     if($_SERVER ['REQUEST_METHOD']=== 'POST'){
@@ -19,24 +18,26 @@ $error='';
         }
 }
 
-
 $pageTitle = 'Login';
-require_once 'includes/header.php';
+require_once 'includes/heading.php';
 ?>
-<h1>Welcome to the Quiz</h1>
-<p>Enter your name before answering</p>
-
+<?php
+echo '<div style="text-align: center;"> <h3>Welcome to the Quiz<h> </div>';
+echo '<div style="text-align: center;"> Please Enter your name before answering </div>';
+?>
 <?php if ($error): ?>
     <?php echo $error ?>
 <?php endif; ?>
-
 <form action="login.php" method= "POST" >
-    <h1>PHP Knowledge Questions</h1>
-    <p>Answer all question</p>
-    <p>Enter Name:</p>
-    <input type="text" name="username" id="username"> <br><br>
-    <input type="password" name="password" id="password"> <br><br>
-    <input type="submit" value="Start Quiz">
-
+    <?php echo '<div style="text-align: center;">PHP Knowledge Questions</div>';?>
+    <br>
+    <?php
+    echo  '<div style="text-align: center;"><p>Enter Name :
+    <input type="text" name="username" id="username">
+    <input type="password" name="password" id="password">
+    <input type="submit" value="Start Quiz"></div>'
+    ?>
+</p>
+</div>
 </form>
 <?php require_once 'includes/footer.php'; ?>
