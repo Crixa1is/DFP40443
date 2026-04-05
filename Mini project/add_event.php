@@ -6,12 +6,13 @@
     $date  = mysqli_real_escape_string($conn, $_POST['date']);
     $loc   = mysqli_real_escape_string($conn, $_POST['loc']);
     $desc  = mysqli_real_escape_string($conn, $_POST['desc']);
+    $type  = mysqli_real_escape_string($conn, $_POST['type']);
 
     $image_name = $_FILES['pic']['name'];
     $temp_name  = $_FILES['pic']['tmp_name'];
     $folder     = "images/" . $image_name;
 
-    $sql = "INSERT INTO event (event_name, event_date, event_location, event_description, event_image) VALUES ('$title', '$date', '$loc', '$desc', '$image_name')";
+    $sql = "INSERT INTO event (event_name, event_date, event_location, event_description, event_image, event_type) VALUES ('$title', '$date', '$loc', '$desc', '$image_name', '$type')";
 
     if (mysqli_query($conn, $sql)) {
         if (!is_dir('images')) {
@@ -46,7 +47,6 @@
         }
     }
     ?>
-<?php echo "
     <form method = 'POST' enctype='multipart/form-data'>
     <div class='card mt-6' style='margin: 20px; margin-bottom: 20px;' >
             <div class='container'>
@@ -64,6 +64,18 @@
                 <h6>Location</h6>
                 <input type='text' name='loc' id='loc' class='form-control' required>
             </div>
+            <br>
+            <div class='row'>
+                <h6>Event Type</h6>
+            <select name='type' id='type' class='form-control' required>
+                <option value=''>Select event type--</option>
+                <option value='Academic'>Academic</option>
+                <option value='Sport'>Sport</option>
+                <option value='Fundraiser'>Fundraiser</option>
+                <option value='Other'>Other</option>    
+            </select>
+            </div>
+            <br>
             <div class='row'>
                 <h6> Description </h6>
                 <textarea name='desc' class='form-control' rows='4'required></textarea>

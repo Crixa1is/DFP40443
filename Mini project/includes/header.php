@@ -5,7 +5,8 @@
             <h3 class="mb-0">SITS Club Event Dashboard</h3>
             
             <div class="ms-auto">
-                <a href="logout.php" class="btn btn-outline-light btn-sm px-4" onclick="return confirm('Are you sure you want to log out?');">
+                <a href="logout.php" class="btn btn-outline-light btn-sm px-4" 
+                onclick="return confirm('Are you sure you want to log out?');">
                     Logout
                 </a>
             </div>

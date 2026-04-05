@@ -28,8 +28,8 @@ if (isset($_POST['update_event'])) {
     $date  = mysqli_real_escape_string($conn, $_POST['date']);
     $loc   = mysqli_real_escape_string($conn, $_POST['loc']);
     $desc  = mysqli_real_escape_string($conn, $_POST['desc']);
+    $type  = mysqli_real_escape_string($conn, $_POST['type']);
 
-    // IMAGE LOGIC:
     if (!empty($_FILES['pic']['name'])) {
         // User uploaded a NEW image
         $image_name = $_FILES['pic']['name'];
@@ -44,7 +44,8 @@ if (isset($_POST['update_event'])) {
                    event_date = '$date', 
                    event_location = '$loc', 
                    event_description = '$desc', 
-                   event_image = '$image_name' 
+                   event_image = '$image_name',
+                   event_type = '$type' 
                    WHERE event_id = '$id'";
 
     if (mysqli_query($conn, $update_sql)) {
@@ -85,6 +86,17 @@ if (isset($_POST['update_event'])) {
                     <div class="mb-3">
                         <label class="form-label">Location</label>
                         <input type="text" name="loc" class="form-control" value="<?= $row['event_location'] ?>" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Event Type</label>
+                        <select name="type" id="type" class="form-control" required>
+                            <option value="" <?= ($row['event_type'] == '') ? 'selected' : '' ?>>Select event type--</option>
+                            <option value="Sport" <?= ($row['event_type'] == 'Sport') ? 'selected' : '' ?>>Sport</option>
+                            <option value="Academic" <?= ($row['event_type'] == 'Academic') ? 'selected' : '' ?>>Academic</option>
+                            <option value="Fundraiser" <?= ($row['event_type'] == 'Fundraiser') ? 'selected' : '' ?>>Fundraiser</option>
+                            <option value="Sport" <?= ($row['event_type'] == 'Other') ? 'selected' : '' ?>>Other</option>
+                        </select>
                     </div>
 
                     <div class="mb-3">
