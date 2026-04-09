@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$host     = "localhost";
+$host     = "PMU-ADL2-PC22";
 $username = "root";
 $password = "";
 $dbname   = "mini_project";
