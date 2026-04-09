@@ -1,5 +1,4 @@
 <?php
-
 require_once 'config/app_config.php';
 
 if (isset($_POST['register'])) {
@@ -8,7 +7,6 @@ if (isset($_POST['register'])) {
     $role = $_POST['role_id'];
 
     $checking = mysqli_query($conn, "SELECT*FROM user WHERE username='$username'");
-
     if(mysqli_num_rows($checking)> 0){
         echo "<h6 style = 'text-align: center'>Username already exist</h6>";
     }else {
@@ -31,8 +29,6 @@ if (isset($_POST['register'])) {
     <title>Document</title>
 </head>
 <body>
-    <?php
-        echo "
             <form method='POST'>
             <div class='container mt-5'>
             <div class='row'>
@@ -50,10 +46,9 @@ if (isset($_POST['register'])) {
             </select>
         </div>
         <br>
-        <input type='submit' name='register' value='Sign up' class='btn btn-primary'>
+        <input type='submit' name='register' value='Sign up' class='btn btn-primary' >
         
     </div>
-    </form>"
-    ?>
+    </form>
 </body>
 </html>

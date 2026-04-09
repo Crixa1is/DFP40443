@@ -14,6 +14,15 @@
     if (!empty($date)) { $sql .= " AND event_date = '$date'"; }
     $sql .= " ORDER BY event_date ASC";
 
+    $resTotal = mysqli_query($conn, "SELECT COUNT(event_id) as total FROM event");
+    $totalCount = mysqli_fetch_assoc($resTotal)['total'];
+
+    $resAcad = mysqli_query($conn, "SELECT COUNT(event_id) as total FROM event WHERE event_type = 'Academic'");
+    $acadCount = mysqli_fetch_assoc($resAcad)['total'];
+
+    $resSport = mysqli_query($conn, "SELECT COUNT(event_id) as total FROM event WHERE event_type = 'Sport'");
+    $sportCount = mysqli_fetch_assoc($resSport)['total'];
+
     $result = mysqli_query($conn, $sql);
 ?>
 
@@ -27,10 +36,37 @@
 </head>
 <body>
     <div class="container mt-4">
+    <div class="row mb-4">
+        
+        <div class="col-md-4">
+            <div class="card bg-dark text-white shadow-sm border-0 ">
+                <div class="card-body d-flex justify-content">
+                    <div>
+                        <h6 class="text-uppercase mb-1" >Total Events</h6>
+                        <h2 class="mb-0 fw-bold"><?= $totalCount ?></h2>
+                    </div></div></div></div>
+        
+        <div class="col-md-4">
+            <div class="card bg-dark text-white shadow-sm border-0 h-100">
+                <div class="card-body d-flex justify-content">
+                    <div>
+                        <h6 class="text-uppercase mb-1" >Academic Events</h6>
+                        <h2 class="mb-0 fw-bold"><?= $acadCount ?></h2>
+                    </div></div></div></div>
+        
+        <div class="col-md-4">
+            <div class="card bg-dark text-white shadow-sm border-0 h-100">
+                <div class="card-body d-flex justify-content">
+                    <div>
+                        <h6 class="text-uppercase mb-1" > Sport Events</h6>
+                        <h2 class="mb-0 fw-bold"><?= $sportCount ?></h2>
+                    </div></div></div></div>
+
+        
+
+    <div class="container mt-4">
         <div class="row">
         <?php
-        // We REMOVED the $sql and $result lines from here 
-        // because they are already handled at the very top of the file.
 
         if (mysqli_num_rows($result) > 0):
             while ($row = mysqli_fetch_assoc($result)): 
@@ -43,6 +79,7 @@
                         <h5 class="card-title fw-bold"><?= $row['event_name'] ?></h5>
                         <p class="mb-1"><small>📅 <?= $row['event_date'] ?></small></p>
                         <p class="mb-2"><small>📍 <?= $row['event_location'] ?></small></p>
+                        <p class="mb-2"><small>📌 <?= $row['event_type'] ?></small></p>
                         <p class="card-text text-secondary"><?= $row['event_description'] ?></p>
                     </div>
 
