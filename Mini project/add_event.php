@@ -12,7 +12,10 @@
     $temp_name  = $_FILES['pic']['tmp_name'];
     $folder     = "images/" . $image_name;
 
-    $sql = "INSERT INTO event (event_name, event_date, event_location, event_description, event_image, event_type) VALUES ('$title', '$date', '$loc', '$desc', '$image_name', '$type')";
+    $sql = "INSERT INTO event (event_name, event_date, event_location, event_description, event_image, event_type) 
+    VALUES ('$title', '$date', '$loc', '$desc', '$image_name', '$type')";
+
+    
 
     if (mysqli_query($conn, $sql)) {
         if (!is_dir('images')) {

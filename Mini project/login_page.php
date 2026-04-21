@@ -33,7 +33,7 @@ include("config/app_config.php");
 <body>  
     <div class='container mt-5'>
         <div class='row'>
-            <h1 style='text-align: center;'>SITS Club Event <br> Management System <br> Login</h1>  
+            <h1 style='text-align: center;'>Absolute Movie <br> Management System <br> Login</h1>  
         </div>
     <?php
         if (!empty($error)){
