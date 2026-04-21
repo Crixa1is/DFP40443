@@ -5,11 +5,9 @@ $message = "";
 
 if (isset($_POST['register'])) {
     $username = trim($_POST['username']); 
-    // Securely hash the password
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $role = $_POST['role_id'];
 
-    // 1. Check if username already exists using Prepared Statements
     $check_sql = "SELECT username FROM users WHERE username = ?";
     $stmt_check = mysqli_prepare($conn, $check_sql);
     mysqli_stmt_bind_param($stmt_check, "s", $username);
@@ -19,16 +17,12 @@ if (isset($_POST['register'])) {
     if (mysqli_stmt_num_rows($stmt_check) > 0) {
         $message = "<div class='alert alert-warning text-center'>Username already exists.</div>";
     } else {
-        // 2. Insert new user
         $sql = "INSERT INTO users (username, password, role_id) VALUES (?, ?, ?)";
         $stmt = mysqli_prepare($conn, $sql);
         
-        // "ssi" stands for string, string, integer
         mysqli_stmt_bind_param($stmt, "ssi", $username, $password, $role);
         
         if (mysqli_stmt_execute($stmt)) {
-            // --- REDIRECT LOGIC ---
-            // Redirects to login_page.php with a success status
             header("Location: login.php?status=success");
             exit(); 
         } else {

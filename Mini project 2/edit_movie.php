@@ -1,7 +1,6 @@
 <?php
 include("config/app_config.php");
 
-// SECURITY: Only Admins can edit
 if (!isset($_SESSION['role_id']) || $_SESSION['role_id'] != 1) {
     header("Location: main_page.php?error=unauthorized");
     exit();
@@ -9,7 +8,6 @@ if (!isset($_SESSION['role_id']) || $_SESSION['role_id'] != 1) {
 
 $message = "";
 
-// 1. FETCH CURRENT DATA (To make the form "Sticky")
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
     $stmt = mysqli_prepare($conn, "SELECT * FROM movies WHERE id = ?");
@@ -24,7 +22,6 @@ if (isset($_GET['id'])) {
     }
 }
 
-// 2. PROCESS THE UPDATE
 if (isset($_POST['update_movie'])) {
     $id = $_POST['id'];
     $title = trim($_POST['title']);
@@ -33,22 +30,18 @@ if (isset($_POST['update_movie'])) {
     $desc  = trim($_POST['desc']);
     $old_image = $_POST['old_image'];
 
-    // Check if a new image is being uploaded
     if ($_FILES['pic']['name'] != "") {
         $image_name = time() . "_" . $_FILES['pic']['name'];
         $target = "images/" . $image_name;
 
-        // Fulfills Rubric: Delete the old file from server to save space
         if (file_exists("images/" . $old_image)) {
             unlink("images/" . $old_image);
         }
         move_uploaded_file($_FILES['pic']['tmp_name'], $target);
     } else {
-        // No new image uploaded, keep the old name
         $image_name = $old_image;
     }
 
-    // 3. SECURE UPDATE: Using Prepared Statements
     $sql = "UPDATE movies SET title=?, genre=?, release_date=?, description=?, image=? WHERE id=?";
     $stmt_upd = mysqli_prepare($conn, $sql);
     mysqli_stmt_bind_param($stmt_upd, "sssssi", $title, $genre, $date, $desc, $image_name, $id);
